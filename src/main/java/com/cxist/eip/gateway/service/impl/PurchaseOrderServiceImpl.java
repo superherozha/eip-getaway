@@ -45,4 +45,14 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
         return new PageInfo<>(purchaseOrders);
     }
 
+    @Override
+    public void addPurchaseOrder(PurchaseOrder purchaseOrder) {
+        purchaseOrderMapper.insert(purchaseOrder);
+    }
+
+    @Override
+    public void batchAddPurchaseOrder(List<PurchaseOrder> purchaseOrders) {
+        purchaseOrders.forEach(purchaseOrder -> purchaseOrderMapper.insert(purchaseOrder));
+    }
+
 }

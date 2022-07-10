@@ -1,8 +1,8 @@
 package com.cxist.eip.gateway.entity;
 
-import com.cxist.eip.gateway.entity.vo.CommonVo;
 import lombok.Data;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Auther Chaos
@@ -28,4 +28,6 @@ public class PurchaseOrder {
     private Date createdTime;
     private Date updatedTime;
     private char isDeleted;
+
+    private List<PurchaseOrderLine> purchaseOrderLine;
 }

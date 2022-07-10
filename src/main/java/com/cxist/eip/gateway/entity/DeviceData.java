@@ -9,7 +9,7 @@ import java.util.Date;
  * @Date 2022/7/8
  */
 @Data
-public class TagInfo {
+public class DeviceData {
     private Integer id;
     private String batchNo;
     private String deviceCode;

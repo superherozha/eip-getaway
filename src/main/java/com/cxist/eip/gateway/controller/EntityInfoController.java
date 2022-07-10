@@ -19,7 +19,17 @@ public class EntityInfoController {
     EntityInfoService entityInfoService;
 
     @PostMapping("/add")
-    public ResponseResult add(@RequestBody EntityInfo entityInfo){
+    public ResponseResult<Object> add(@RequestBody EntityInfo entityInfo){
+        try {
+            entityInfoService.save(entityInfo);
+        }catch (Exception e){
+            return new ResponseResult<>(false, StatusEnum.ERROR);
+        }
+        return new ResponseResult<>(true, StatusEnum.OK);
+    }
+
+    @RequestMapping(value = "/update")
+    public ResponseResult<Object> update(@RequestBody EntityInfo entityInfo){
         try {
             entityInfoService.save(entityInfo);
         }catch (Exception e){

@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class PurchaseOrderVo extends CommonVo{
     private String source;
-    private String purchaserOrderNo;
+    private String purchaseOrderNo;
     private String contractNo;
     private String purchaseOrderId;
 }

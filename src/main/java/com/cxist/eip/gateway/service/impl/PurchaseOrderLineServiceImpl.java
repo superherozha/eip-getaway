@@ -30,10 +30,15 @@ public class PurchaseOrderLineServiceImpl implements PurchaseOrderLineService {
         LambdaQueryWrapper<PurchaseOrderLine> lambda = queryWrapper.lambda();
         lambda.eq(PurchaseOrderLine::getIsDeleted,"N");
         if (StringUtils.isNotBlank(purchaseOrderVo.getPurchaseOrderId())){
-            lambda.eq(PurchaseOrderLine::getPurchaseOrderId, purchaseOrderVo.getPurchaseOrderId());
+            lambda.eq(PurchaseOrderLine::getId, purchaseOrderVo.getPurchaseOrderId());
         }
         PageHelper.startPage(purchaseOrderVo.getPageNum(),purchaseOrderVo.getPageSize());
         List<PurchaseOrderLine> purchaseOrders = purchaseOrderLineMapper.selectList(queryWrapper);
         return new PageInfo<>(purchaseOrders);
+    }
+
+    @Override
+    public void batchAddPurchaseOrderLine(List<PurchaseOrderLine> purchaseOrderLines) {
+        purchaseOrderLines.forEach(purchaseOrderLine -> purchaseOrderLineMapper.insert(purchaseOrderLine));
     }
 }

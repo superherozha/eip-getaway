@@ -35,7 +35,7 @@ public class AttachFileController {
     }
 
     @PostMapping(value = "/upload")
-    public ResponseResult upload(@RequestBody AttachFile attachFile, MultipartFile file){
+    public ResponseResult<Object> upload(@RequestBody AttachFile attachFile, MultipartFile file){
         try {
             attachFileService.addAttachFile(attachFile);
             return new ResponseResult<>(true, StatusEnum.OK);

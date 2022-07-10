@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class PurchaseOrderLine {
     private Integer id;
-    private String purchaseOrderId;
+    private String purchaseOrderNo;
     private String purchaseOrderLineNo;
     private String purchaseOrderLineId;
     private String materialCode;
