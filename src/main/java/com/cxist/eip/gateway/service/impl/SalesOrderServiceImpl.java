@@ -21,12 +21,13 @@ public class SalesOrderServiceImpl implements SalesOrderService {
     SalesOrderMapper salesOrderMapper;
 
     @Override
-    public void save(SalesOrder salesOrder) {
-        if (salesOrder.getId() == null){
-            salesOrderMapper.insert(salesOrder);
-        } else {
-            salesOrderMapper.updateById(salesOrder);
-        }
+    public int addSalesOrder(SalesOrder salesOrder) {
+        return salesOrderMapper.insert(salesOrder);
+    }
+
+    @Override
+    public void updateSalesOrder(SalesOrder salesOrder) {
+        salesOrderMapper.updateById(salesOrder);
     }
 
 }

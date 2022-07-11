@@ -10,8 +10,4 @@ import lombok.Data;
 public class CommonVo {
     private Integer pageNum;
     private Integer pageSize;
-    private String updatedStartTime;
-    private String updatedEndTime;
-    private String contractSignStartDate;
-    private String contractSignEndDate;
 }

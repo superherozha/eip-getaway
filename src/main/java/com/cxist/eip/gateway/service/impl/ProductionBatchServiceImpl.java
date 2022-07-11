@@ -18,13 +18,14 @@ public class ProductionBatchServiceImpl implements ProductionBatchService {
     ProductionBatchInfoMapper productionBatchInfoMapper;
 
     @Override
-    public void save(ProductionBatchInfo productionBatch) {
-        if (productionBatch.getId() == null){
-            productionBatchInfoMapper.insert(productionBatch);
-        } else {
-            UpdateWrapper<ProductionBatchInfo> updateWrapper = new UpdateWrapper<>();
-            productionBatchInfoMapper.update(productionBatch,updateWrapper.lambda().
-                    ge(ProductionBatchInfo::getProductionBatchNo,productionBatch.getProductionBatchNo()));
-        }
+    public void add(ProductionBatchInfo productionBatch) {
+        productionBatchInfoMapper.insert(productionBatch);
+    }
+
+    @Override
+    public void modify(ProductionBatchInfo productionBatch) {
+        UpdateWrapper<ProductionBatchInfo> updateWrapper = new UpdateWrapper<>();
+        productionBatchInfoMapper.update(productionBatch,updateWrapper.lambda().
+                ge(ProductionBatchInfo::getProductionBatchNo,productionBatch.getProductionBatchNo()));
     }
 }

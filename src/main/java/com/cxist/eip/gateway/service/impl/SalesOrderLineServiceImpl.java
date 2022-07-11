@@ -19,7 +19,7 @@ public class SalesOrderLineServiceImpl implements SalesOrderLineService {
 
     @Override
     public void save(SalesOrderLine salesOrderLine) {
-        if (salesOrderLine.getId() == null){
+        if (salesOrderLine.getSalesOrderId() == null){
             salesOrderLineMapper.insert(salesOrderLine);
         } else {
             salesOrderLineMapper.updateById(salesOrderLine);
@@ -29,5 +29,10 @@ public class SalesOrderLineServiceImpl implements SalesOrderLineService {
     @Override
     public void batchSave(List<SalesOrderLine> salesOrderLines) {
         salesOrderLines.forEach(this::save);
+    }
+
+    @Override
+    public void batchUpdate(List<SalesOrderLine> salesOrderLines) {
+        salesOrderLines.forEach(salesOrderLineMapper::updateById);
     }
 }

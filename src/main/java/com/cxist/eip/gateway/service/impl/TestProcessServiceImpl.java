@@ -33,10 +33,6 @@ public class TestProcessServiceImpl implements TestProcessService {
 
     @Override
     public void updateResult(TestProcess testProcess) {
-        QueryWrapper<TestProcess> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(TestProcess::getTestNo, testProcess.getTestNo());
-        TestProcess testProcess1 = testProcessMapper.selectOne(queryWrapper);
-        UpdateWrapper<TestProcess> wrapper = new UpdateWrapper<>(testProcess1);
-        testProcessMapper.update(testProcess1,wrapper);
+        testProcessMapper.updateById(testProcess);
     }
 }

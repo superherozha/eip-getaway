@@ -9,7 +9,7 @@ import com.cxist.eip.gateway.entity.TestGroup;
 public interface TestGroupService {
     void add(TestGroup testGroup);
 
-    void update(TestGroup testGroup);
+    void modify(TestGroup testGroup);
 
-    void updateByNo(TestGroup testGroup);
+    void modifyByNo(TestGroup testGroup);
 }

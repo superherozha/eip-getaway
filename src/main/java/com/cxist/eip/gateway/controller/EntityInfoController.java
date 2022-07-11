@@ -2,7 +2,7 @@ package com.cxist.eip.gateway.controller;
 
 import com.cxist.eip.gateway.common.ResponseResult;
 import com.cxist.eip.gateway.common.StatusEnum;
-import com.cxist.eip.gateway.entity.EntityInfo;
+import com.cxist.eip.gateway.entity.ProductEntityInfo;
 import com.cxist.eip.gateway.service.EntityInfoService;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
@@ -19,21 +19,21 @@ public class EntityInfoController {
     EntityInfoService entityInfoService;
 
     @PostMapping("/add")
-    public ResponseResult<Object> add(@RequestBody EntityInfo entityInfo){
+    public ResponseResult<Object> add(@RequestBody ProductEntityInfo entityInfo){
         try {
-            entityInfoService.save(entityInfo);
+            entityInfoService.add(entityInfo);
         }catch (Exception e){
-            return new ResponseResult<>(false, StatusEnum.ERROR);
+            return new ResponseResult<>(false, StatusEnum.ERROR,e.getMessage());
         }
         return new ResponseResult<>(true, StatusEnum.OK);
     }
 
     @RequestMapping(value = "/update")
-    public ResponseResult<Object> update(@RequestBody EntityInfo entityInfo){
+    public ResponseResult<Object> update(@RequestBody ProductEntityInfo entityInfo){
         try {
-            entityInfoService.save(entityInfo);
+            entityInfoService.modify(entityInfo);
         }catch (Exception e){
-            return new ResponseResult<>(false, StatusEnum.ERROR);
+            return new ResponseResult<>(false, StatusEnum.ERROR,e.getMessage());
         }
         return new ResponseResult<>(true, StatusEnum.OK);
     }

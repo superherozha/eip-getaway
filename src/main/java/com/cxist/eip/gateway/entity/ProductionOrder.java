@@ -1,5 +1,10 @@
 package com.cxist.eip.gateway.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,7 +15,8 @@ import java.util.Date;
  */
 @Data
 public class ProductionOrder {
-    private Integer id;
+    @TableId(value = "production_order_id",type = IdType.AUTO)
+    private Integer productionOrderId;
     private Integer salesOrderLineId;
     private String productionOrderNo;
     private String productionMaterialCode;
@@ -25,7 +31,12 @@ public class ProductionOrder {
     private String actualEndDate;
     private String declaration;
     private Integer fileId;
-    private Date createdTime;
-    private Date updatedTime;
+    @TableField(fill = FieldFill.INSERT)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date gmtCreated;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date gmtUpdated;
+    @TableField(fill = FieldFill.INSERT)
     private char isDeleted;
 }

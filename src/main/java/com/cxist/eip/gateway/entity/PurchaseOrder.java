@@ -1,8 +1,12 @@
 package com.cxist.eip.gateway.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @Auther Chaos
@@ -11,9 +15,10 @@ import java.util.List;
  */
 @Data
 public class PurchaseOrder {
-    private Integer id;
+    @TableId(value = "purchase_order_id",type = IdType.AUTO)
+    private Integer purchaseOrderId;
     private String source;
-    private String purchaserOrderNo;
+    private String purchaseOrderNo;
     private String contractNo;
     private String contractName;
     private String contractSignDate;
@@ -23,11 +28,18 @@ public class PurchaseOrder {
     private String sellerCode;
     private String contractTypeCode;
     private String contractTypeName;
-    private String lineNumber;
+    private Integer lineNumber;
     private String syncType;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createdTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updatedTime;
+    @TableField(value = "gmt_created",fill = FieldFill.INSERT)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date gmtCreated;
+    @TableField(value = "gmt_updated",fill = FieldFill.INSERT_UPDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date gmtUpdated;
+    @TableField(value = "is_deleted",fill = FieldFill.INSERT)
     private char isDeleted;
-
-    private List<PurchaseOrderLine> purchaseOrderLine;
 }

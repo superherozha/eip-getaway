@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther Chaos
@@ -35,10 +37,12 @@ public class AttachFileController {
     }
 
     @PostMapping(value = "/upload")
-    public ResponseResult<Object> upload(@RequestBody AttachFile attachFile, MultipartFile file){
+    public ResponseResult<Object> upload(@RequestBody AttachFile attachFile){
         try {
             attachFileService.addAttachFile(attachFile);
-            return new ResponseResult<>(true, StatusEnum.OK);
+            Map<String, Object> map = new HashMap<>();
+            map.put("fileId",attachFile.getId());
+            return new ResponseResult<>(true, StatusEnum.OK,map);
         }catch (Exception e){
             return new ResponseResult<>(false, StatusEnum.ERROR,e.getMessage());
         }

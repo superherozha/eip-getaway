@@ -7,5 +7,7 @@ import com.cxist.eip.gateway.entity.SalesOrder;
  * @Date 2022/7/8
  */
 public interface SalesOrderService {
-    void save(SalesOrder salesOrder);
+    int addSalesOrder(SalesOrder salesOrder);
+
+    void updateSalesOrder(SalesOrder salesOrder);
 }

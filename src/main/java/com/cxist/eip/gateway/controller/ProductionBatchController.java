@@ -5,6 +5,7 @@ import com.cxist.eip.gateway.common.StatusEnum;
 import com.cxist.eip.gateway.entity.ProductionBatchInfo;
 import com.cxist.eip.gateway.service.ProductionBatchService;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
@@ -22,11 +23,21 @@ public class ProductionBatchController {
     @Resource
     ProductionBatchService productionBatchService;
 
-    @RequestMapping(value = "/save")
-    public ResponseResult<Object> save(ProductionBatchInfo productionBatchInfo){
+    @RequestMapping(value = "/add")
+    public ResponseResult<Object> add(@RequestBody ProductionBatchInfo productionBatchInfo){
         try {
-            productionBatchService.save(productionBatchInfo);
-            return new ResponseResult<>(true, StatusEnum.OK,productionBatchInfo.getId());
+            productionBatchService.add(productionBatchInfo);
+            return new ResponseResult<>(true, StatusEnum.OK,productionBatchInfo.getProductionBatchId());
+        }catch (Exception e){
+            return new ResponseResult<>(false, StatusEnum.ERROR,e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/modify")
+    public ResponseResult<Object> modify(@RequestBody ProductionBatchInfo productionBatchInfo){
+        try {
+            productionBatchService.modify(productionBatchInfo);
+            return new ResponseResult<>(true, StatusEnum.OK,productionBatchInfo.getProductionBatchId());
         }catch (Exception e){
             return new ResponseResult<>(false, StatusEnum.ERROR,e.getMessage());
         }

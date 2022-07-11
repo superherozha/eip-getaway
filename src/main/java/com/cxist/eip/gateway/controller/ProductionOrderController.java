@@ -22,20 +22,20 @@ import java.util.Map;
  */
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/ProductionOrder")
+@RequestMapping(value = "/productionOrder")
 public class ProductionOrderController {
     @Resource
     ProductionOrderService productionOrderService;
 
-    @RequestMapping(value = "/save")
-    public ResponseResult<Object> save(@RequestBody ProductionOrderVo productionOrderVo){
+    @RequestMapping(value = "/add")
+    public ResponseResult<Object> add(@RequestBody ProductionOrderVo productionOrderVo){
         try {
             productionOrderService.insert(productionOrderVo);
             List<ProductionOrder> productionOrders = productionOrderVo.getProductionOrders();
             List<WorkOrder> list = new ArrayList<>();
             productionOrders.forEach(productionOrder -> {
                 WorkOrder workOrder = new WorkOrder();
-                workOrder.setProductionOrderId(productionOrder.getId());
+                workOrder.setProductionOrderId(productionOrder.getProductionOrderId());
                 workOrder.setProductionOrderNo(productionOrder.getProductionOrderNo());
                 list.add(workOrder);
             });
@@ -45,7 +45,7 @@ public class ProductionOrderController {
         }
     }
 
-    @RequestMapping(value = "/update")
+    @RequestMapping(value = "/modify")
     public ResponseResult<Object> update(ProductionOrder productionOrder){
         try {
             productionOrderService.update(productionOrder);
@@ -59,7 +59,7 @@ public class ProductionOrderController {
     public ResponseResult<Object> delete(@RequestBody Map<String,Object> map){
         try {
             ProductionOrder order = new ProductionOrder();
-            order.setId((Integer) map.get("productionOrderId"));
+            order.setProductionOrderId((Integer) map.get("productionOrderId"));
             order.setDeclaration((String) map.get("declaration"));
             if (map.get("fileId") != null){
                 order.setFileId((Integer)map.get("fileId"));

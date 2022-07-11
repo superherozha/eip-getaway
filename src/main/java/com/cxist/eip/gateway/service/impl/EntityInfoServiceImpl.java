@@ -1,10 +1,9 @@
 package com.cxist.eip.gateway.service.impl;
 
 import com.cxist.eip.gateway.dao.EntityInfoMapper;
-import com.cxist.eip.gateway.entity.EntityInfo;
+import com.cxist.eip.gateway.entity.ProductEntityInfo;
 import com.cxist.eip.gateway.service.EntityInfoService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 
 /**
@@ -19,11 +18,12 @@ public class EntityInfoServiceImpl implements EntityInfoService {
     EntityInfoMapper entityInfoMapper;
 
     @Override
-    public void save(EntityInfo entityInfo) {
-        if (entityInfo.getId() != null){
-            entityInfoMapper.updateById(entityInfo);
-        } else {
-            entityInfoMapper.insert(entityInfo);
-        }
+    public void add(ProductEntityInfo entityInfo) {
+        entityInfoMapper.insert(entityInfo);
+    }
+
+    @Override
+    public void modify(ProductEntityInfo entityInfo) {
+        entityInfoMapper.updateById(entityInfo);
     }
 }

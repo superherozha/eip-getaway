@@ -13,4 +13,6 @@ public interface SalesOrderLineService {
     void save(SalesOrderLine salesOrderLine);
 
     void batchSave(List<SalesOrderLine> salesOrderLines);
+
+    void batchUpdate(List<SalesOrderLine> salesOrderLines);
 }

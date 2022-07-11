@@ -24,12 +24,12 @@ public class TestGroupServiceImpl implements TestGroupService {
     }
 
     @Override
-    public void update(TestGroup testGroup){
+    public void modify(TestGroup testGroup){
         testGroupMapper.updateById(testGroup);
     }
 
     @Override
-    public void updateByNo(TestGroup testGroup){
+    public void modifyByNo(TestGroup testGroup){
         UpdateWrapper<TestGroup> wrapper = new UpdateWrapper<>();
         testGroupMapper.update(testGroup,wrapper.lambda().ge(TestGroup::getTestGroupNo,testGroup.getTestGroupNo()));
     }

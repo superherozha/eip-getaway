@@ -7,5 +7,7 @@ import com.cxist.eip.gateway.entity.ProductionBatchInfo;
  * @Date 2022/7/8
  */
 public interface ProductionBatchService {
-    void save(ProductionBatchInfo ProductionBatch);
+    void add(ProductionBatchInfo productionBatch);
+
+    void modify(ProductionBatchInfo productionBatch);
 }

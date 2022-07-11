@@ -12,4 +12,8 @@ public class PurchaseOrderVo extends CommonVo{
     private String purchaseOrderNo;
     private String contractNo;
     private String purchaseOrderId;
+    private String updatedStartTime;
+    private String updatedEndTime;
+    private String ContractSignStartDate;
+    private String ContractSignEndDate;
 }
